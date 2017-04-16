@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if title == None %}
+    <center>
+      <h1>Search</h1>
+      <form method="POST" class="post-form">{% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">Search</button>
+      </form>
+    </center>
+    {% endif %}
+
+    {% if title != None %}
+        <a href="/post_result">Search another number</a>
+        <h1>Result</h1>
+        <h3><b>{{ patent_number }}</b></h3>
+        <h4><b>Title</b>: {{ title }}</h4>
+        <p><b>Abstract</b>: {{ Abstract }}</p>
+        <h4><b>Most Important Concepts</b>:</h4>
+        {% for item in Result %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
